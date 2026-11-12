@@ -3,9 +3,6 @@ extends CharacterBody2D
 
 @export var max_health: int = 100
 @export var knockback_decay: int = 800
-@export var player_group_name: String
-
-var player: Node2D
 
 var health = max_health
 var knockback_velocity = Vector2.ZERO
@@ -22,10 +19,6 @@ func take_damage(amount: int, impulse: Vector2) -> void:
 
 func kill() -> void:
 	queue_free()
-
-func _process(_delta: float) -> void:
-	if player == null:
-		player = get_tree().get_first_node_in_group(player_group_name)
 
 func _physics_process(delta: float) -> void:
 	if knockback_velocity.length() > 0: #do knockback first

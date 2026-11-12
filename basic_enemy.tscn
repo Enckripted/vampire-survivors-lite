@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://du51owic3w7br"]
 
-[ext_resource type="Script" uid="uid://cvaxyli7slhqw" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://cssdhpksx4cp4" path="res://basic_enemy.gd" id="1_rwafm"]
 [ext_resource type="Texture2D" uid="uid://wqs7tx2l1onk" path="res://icon.svg" id="2_qi2p4"]
 
 [sub_resource type="GDScript" id="GDScript_i3pqv"]
@@ -8,14 +8,15 @@ script/source = "extends Sprite2D
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
-size = Vector2(128, 128)
+size = Vector2(64, 64)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1339468578]
-script = ExtResource("1_4gyqm")
-player_group_name = "player"
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1339468578]
+script = ExtResource("1_rwafm")
+speed = 250
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967315049]
 modulate = Color(1, 0.60784316, 0.60784316, 1)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_qi2p4")
 script = SubResource("GDScript_i3pqv")
 
