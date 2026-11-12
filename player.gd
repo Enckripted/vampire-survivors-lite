@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 400
+@export var speed = 400
 
 func _init() -> void:
 	print("hello world")
