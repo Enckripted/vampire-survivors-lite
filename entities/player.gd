@@ -1,12 +1,18 @@
-extends CharacterBody2D
+class_name Player
+extends Entity
 
 @export var speed = 400
 
-func _init() -> void:
-	print("hello world")
+var direction := Vector2.ZERO
+
+func get_movement_velocity() -> Vector2:
+	return speed * direction
+
+func handle_collision(_collision: KinematicCollision2D) -> void:
+	pass
 
 func _process(_delta: float) -> void:
-	var direction = Vector2.ZERO
+	direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
 		direction += Vector2.UP
 	if Input.is_action_pressed("ui_down"):
@@ -16,8 +22,4 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		direction += Vector2.RIGHT
 	direction = direction.normalized()
-	
-	velocity = direction * speed
 
-func _physics_process(_delta: float) -> void:
-	move_and_slide()

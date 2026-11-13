@@ -1,19 +1,24 @@
 [gd_scene format=3 uid="uid://cpjnnvaj0h0qo"]
 
 [ext_resource type="Texture2D" uid="uid://wqs7tx2l1onk" path="res://icon.svg" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://dp14360pvmeyg" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://dp14360pvmeyg" path="res://entities/player.gd" id="1_onrkg"]
 
 [sub_resource type="GDScript" id="GDScript_i3pqv"]
 script/source = "extends Sprite2D
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
-size = Vector2(128, 128)
+size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D" unique_id=1641185780]
+collision_mask = 2
 script = ExtResource("1_onrkg")
+immunity_time = 1.0
+knockback_decay = 1600
+move_while_knocked = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967315049]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_4flbx")
 script = SubResource("GDScript_i3pqv")
 

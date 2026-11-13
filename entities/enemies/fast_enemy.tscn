@@ -1,0 +1,26 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://bxmg4dr3ixlpm" path="res://entities/enemies/fast_enemy.gd" id="1_fast"]
+[ext_resource type="Texture2D" uid="uid://wqs7tx2l1onk" path="res://icon.svg" id="2_qi2p4"]
+
+[sub_resource type="GDScript" id="GDScript_i3pqv"]
+script/source = "extends Sprite2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
+size = Vector2(64, 64)
+
+[node name="FastEnemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_fast")
+knockback_magnitude = 400
+speed = 500
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.60784316, 1, 0.60784316, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qi2p4")
+script = SubResource("GDScript_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ty0te")
