@@ -27,6 +27,7 @@ script = SubResource("GDScript_i3pqv")
 shape = SubResource("RectangleShape2D_ty0te")
 
 [node name="HealthBar" parent="." unique_id=260190801 node_paths=PackedStringArray("targetEntity") instance=ExtResource("3_m2rku")]
+visible = false
 offset_top = 45.0
 offset_bottom = 55.0
 targetEntity = NodePath("..")

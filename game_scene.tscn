@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dthxuak5lwpbh"]
+
+[ext_resource type="PackedScene" uid="uid://cpjnnvaj0h0qo" path="res://entities/player.tscn" id="1_mixcd"]
+[ext_resource type="PackedScene" uid="uid://gml0axyg56wa" path="res://enemy_spawner.tscn" id="2_mixcd"]
+[ext_resource type="PackedScene" uid="uid://dnuttnq0ljke2" path="res://ui/game_ui.tscn" id="3_kdryc"]
+[ext_resource type="Script" uid="uid://b1mmicp74b77f" path="res://ui/game_ui.gd" id="4_6e45b"]
+
+[node name="GameScene" type="Node2D" unique_id=362593964]
+
+[node name="Player" parent="." unique_id=1641185780 groups=["player"] instance=ExtResource("1_mixcd")]
+position = Vector2(511, 335)
+
+[node name="EnemySpawner" parent="." unique_id=2138630692 instance=ExtResource("2_mixcd")]
+wait_time = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=747844851]
+
+[node name="GameUi" parent="CanvasLayer" unique_id=289481130 node_paths=PackedStringArray("player") instance=ExtResource("3_kdryc")]
+script = ExtResource("4_6e45b")
+player = NodePath("../../Player")

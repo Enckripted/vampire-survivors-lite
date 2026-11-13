@@ -6,5 +6,4 @@ extends Control
 @onready var health_text: Label = $HealthText
 
 func _process(_delta: float) -> void:
-	health_text.text = str(player.health)
-
+	health_text.text = str(player.health) if player != null else "0"

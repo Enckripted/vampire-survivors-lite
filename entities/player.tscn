@@ -24,3 +24,5 @@ script = SubResource("GDScript_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530028931]
 shape = SubResource("RectangleShape2D_ty0te")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=619354663]
