@@ -10,9 +10,13 @@ script/source = "extends Sprite2D
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
 size = Vector2(64, 64)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty0te"]
+radius = 97.020615
+
 [node name="Player" type="CharacterBody2D" unique_id=1641185780]
 collision_mask = 2
 script = ExtResource("1_onrkg")
+attack_knockback = 400
 immunity_time = 1.0
 knockback_decay = 1600
 move_while_knocked = true
@@ -26,3 +30,15 @@ script = SubResource("GDScript_i3pqv")
 shape = SubResource("RectangleShape2D_ty0te")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=619354663]
+
+[node name="AutoAttackTimer" type="Timer" parent="." unique_id=1307091210]
+wait_time = 0.75
+autostart = true
+
+[node name="AutoAttackArea" type="Area2D" parent="." unique_id=1999320627]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackArea" unique_id=705646008]
+shape = SubResource("CircleShape2D_ty0te")
+
+[connection signal="timeout" from="AutoAttackTimer" to="." method="_on_auto_attack_timer_timeout"]

@@ -16,6 +16,9 @@ collision_layer = 2
 script = ExtResource("1_rwafm")
 knockback_magnitude = 600
 speed = 100
+max_health = 15
+immunity_time = 0.05
+knockback_decay = 1600
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967315049]
 modulate = Color(1, 0.60784316, 0.60784316, 1)
