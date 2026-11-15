@@ -9,6 +9,10 @@
 
 [node name="GameScene" type="Node2D" unique_id=362593964]
 
+[node name="Player" parent="." unique_id=1641185780 groups=["player"] instance=ExtResource("1_mixcd")]
+z_index = 10
+position = Vector2(511, 335)
+
 [node name="GameState" parent="." unique_id=992081523 instance=ExtResource("1_kdryc")]
 
 [node name="EnemySpawner" parent="." unique_id=2138630692 instance=ExtResource("2_mixcd")]
@@ -16,10 +20,6 @@ wait_time = 2.0
 
 [node name="BasicEnemy" parent="." unique_id=1339468578 instance=ExtResource("2_mj2jn")]
 position = Vector2(234, 341)
-
-[node name="Player" parent="." unique_id=1641185780 groups=["player"] instance=ExtResource("1_mixcd")]
-z_index = 10
-position = Vector2(511, 335)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=747844851]
 

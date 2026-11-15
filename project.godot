@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="vampire survivors lite"
-run/main_scene="uid://dthxuak5lwpbh"
+run/main_scene="uid://bq4inxppukjcj"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

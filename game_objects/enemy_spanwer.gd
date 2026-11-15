@@ -10,8 +10,9 @@ func on_enemy_death():
 	spawned_enemies -= 1
 
 func find_enemy_spawn_location() -> Vector2:
+	var camera = get_viewport().get_camera_2d()
 	var vrect = get_viewport().get_visible_rect().size
-	var center = get_viewport().get_camera_2d().get_screen_center_position()
+	var center = camera.get_screen_center_position()
 
 	var width_ratio = vrect.x / (vrect.x + vrect.y)
 	var side = -1 + 2*floor(randf() / 0.5)
@@ -29,7 +30,7 @@ func spawn_enemy_at(spawn_pos: Vector2) -> void:
 	spawned_enemies += 1
 
 func attempt_enemy_spawn() -> void:
-	if spawned_enemies >= spawn_limit:
+	if spawned_enemies >= spawn_limit or get_viewport().get_camera_2d() == null:
 		return
 	
 	var spawn_location = find_enemy_spawn_location()

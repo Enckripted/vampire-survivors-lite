@@ -15,6 +15,10 @@ func slash():
 			continue
 		
 		enemy.deal_damage(10, (enemy.position-caster_position).normalized() * knockback_magnitude)
+	
+	# TODO: when we put an animation here replace this with waiting for that to finish
+	await get_tree().create_timer(0.5).timeout
+	queue_free()
 
 func setup(_player_position: Vector2, _damage: int, _knockback_magnitude: int) -> void:
 	caster_position = _player_position
