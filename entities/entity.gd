@@ -7,9 +7,9 @@ signal died
 @export var knockback_decay := 800
 @export var move_while_knocked := false
 
-var health := max_health
-var knockback_velocity := Vector2.ZERO
+var health: int
 
+var knockback_velocity := Vector2.ZERO
 var last_hit := 0
 
 @abstract func get_movement_velocity() -> Vector2
@@ -30,6 +30,9 @@ func deal_damage(amount: int, impulse: Vector2) -> void:
 func kill() -> void:
 	died.emit()
 	queue_free()
+
+func _ready() -> void:
+	health = max_health
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO

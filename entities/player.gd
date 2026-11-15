@@ -20,7 +20,6 @@ func enemy_dist_away(enemy: Enemy):
 
 func auto_attack():
 	var bodies = auto_attack_area.get_overlapping_bodies()
-	print(bodies.size())
 	var target: Enemy = null
 
 	for body in bodies:
