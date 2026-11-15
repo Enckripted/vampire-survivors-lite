@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dn7yyf16mplbi"]
+
+[ext_resource type="Script" uid="uid://d4a6ef12jl8om" path="res://projectiles/sword_attack.gd" id="1_qug4u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
+size = Vector2(100, 100)
+
+[node name="SwordAttack" type="Area2D" unique_id=1294801971]
+z_index = 100
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_qug4u")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1920951764]
+color = Color(0.43137255, 0.050980393, 0, 0.47058824)
+polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=136387042]
+shape = SubResource("RectangleShape2D_ty0te")

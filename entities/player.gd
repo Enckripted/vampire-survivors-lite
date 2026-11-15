@@ -3,6 +3,8 @@ extends Entity
 
 @export var speed := 400
 @export var attack_knockback := 800
+@export var attack_damage := 10
+@export var sword_attack: PackedScene
 
 @onready var auto_attack_timer = $AutoAttackTimer as Timer
 @onready var auto_attack_area = $AutoAttackArea as Area2D
@@ -19,21 +21,23 @@ func enemy_dist_away(enemy: Enemy):
 	return (enemy.position - position).length()
 
 func auto_attack():
-	var bodies = auto_attack_area.get_overlapping_bodies()
 	var target: Enemy = null
+	var bodies = auto_attack_area.get_overlapping_bodies()
 
 	for body in bodies:
 		var enemy = body as Enemy
 		if enemy == null:
 			continue
 		
-		if target == null or enemy_dist_away(target) < enemy_dist_away(enemy):
+		if target == null or enemy_dist_away(target) > enemy_dist_away(enemy):
 			target = enemy
-	
 	if target == null:
 		return
-	var knockback_dir = (target.position-position).normalized()
-	target.deal_damage(5, knockback_dir * attack_knockback)
+
+	var n_attack = sword_attack.instantiate() as SwordAttack
+	n_attack.position = target.position
+	n_attack.setup(position, attack_damage, attack_knockback)
+	get_tree().current_scene.add_child(n_attack)
 
 func _process(_delta: float) -> void:
 	direction = Vector2.ZERO
@@ -49,4 +53,3 @@ func _process(_delta: float) -> void:
 
 func _on_auto_attack_timer_timeout() -> void:
 	auto_attack()
-
