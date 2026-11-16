@@ -1,6 +1,7 @@
 @abstract class_name Entity
 extends CharacterBody2D
 signal died
+signal despawned
 
 @export var max_health := 100
 @export var immunity_time := 0.0
@@ -29,6 +30,10 @@ func deal_damage(amount: int, impulse: Vector2) -> void:
 
 func kill() -> void:
 	died.emit()
+	despawn()
+
+func despawn() -> void:
+	despawned.emit()
 	queue_free()
 
 func _ready() -> void:
