@@ -8,5 +8,5 @@ extends Control
 @onready var score_text = $ScoreText as Label
 
 func _process(_delta: float) -> void:
-	health_text.text = str(player.health) if player != null else "0"
+	health_text.text = "Health: %s" % (str(player.health) if player != null else "0")
 	score_text.text = "Score: %s" % str(game_state.score)

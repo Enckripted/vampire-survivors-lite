@@ -29,7 +29,6 @@ collision_mask = 2
 script = ExtResource("1_onrkg")
 attack_knockback = 400
 sword_attack = ExtResource("2_e4p34")
-max_health = 5
 immunity_time = 1.0
 knockback_decay = 1600
 move_while_knocked = true

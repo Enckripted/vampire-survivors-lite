@@ -23,7 +23,7 @@ immunity_time = 0.05
 knockback_decay = 1600
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967315049]
-modulate = Color(1, 0.60784316, 0.60784316, 1)
+modulate = Color(1, 0.5, 0.5, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_qi2p4")
 script = SubResource("GDScript_i3pqv")
