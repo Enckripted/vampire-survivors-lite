@@ -8,7 +8,6 @@ extends Entity
 
 @onready var auto_attack_timer = $AutoAttackTimer as Timer
 @onready var auto_attack_area = $AutoAttackArea as Area2D
-@onready var pickup_area = $PickupArea as Area2D
 
 var direction := Vector2.ZERO
 

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://5dgrk2tv28e7"]
+
+[ext_resource type="Script" uid="uid://cssdhpksx4cp4" path="res://entities/enemies/enemy_melee.gd" id="1_fhth6"]
+[ext_resource type="PackedScene" uid="uid://dsmysiawb5fqe" path="res://game_objects/pickup.tscn" id="2_714qr"]
+[ext_resource type="Texture2D" uid="uid://wqs7tx2l1onk" path="res://icon.svg" id="3_l13wo"]
+[ext_resource type="PackedScene" uid="uid://uvottghrqkix" path="res://ui/health_bar.tscn" id="4_klwmc"]
+
+[sub_resource type="GDScript" id="GDScript_i3pqv"]
+script/source = "extends Sprite2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty0te"]
+size = Vector2(64, 64)
+
+[node name="EnemyMelee2" type="CharacterBody2D" unique_id=1339468578]
+scale = Vector2(1, 1.0182066)
+collision_layer = 2
+script = ExtResource("1_fhth6")
+damage_amount = 15
+knockback_magnitude = 600
+speed = 125
+pickup_scene = ExtResource("2_714qr")
+max_health = 45
+immunity_time = 0.05
+knockback_decay = 1600
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967315049]
+modulate = Color(1, 0.45, 0.45, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_l13wo")
+script = SubResource("GDScript_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530028931]
+shape = SubResource("RectangleShape2D_ty0te")
+
+[node name="HealthBar" parent="." unique_id=260190801 node_paths=PackedStringArray("targetEntity") instance=ExtResource("4_klwmc")]
+visible = false
+offset_top = 45.0
+offset_bottom = 55.0
+targetEntity = NodePath("..")

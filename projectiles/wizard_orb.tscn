@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yy3lj1g4j8eb"]
+
+[ext_resource type="Script" uid="uid://dog51y2nrjb5s" path="res://projectiles/wizard_orb.gd" id="1_aw6t5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_proj"]
+radius = 16.0
+
+[node name="Projectile" type="Area2D" unique_id=522889406]
+z_index = 100
+collision_layer = 8
+script = ExtResource("1_aw6t5")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=755635759]
+color = Color(1, 0.4117647, 0.7058824, 1)
+polygon = PackedVector2Array(16, 0, 15.4548, 4.1411, 13.8564, 8, 11.3137, 11.3137, 8, 13.8564, 4.1411, 15.4548, 0, 16, -4.1411, 15.4548, -8, 13.8564, -11.3137, 11.3137, -13.8564, 8, -15.4548, 4.1411, -16, 0, -15.4548, -4.1411, -13.8564, -8, -11.3137, -11.3137, -8, -13.8564, -4.1411, -15.4548, 0, -16, 4.1411, -15.4548, 8, -13.8564, 11.3137, -11.3137, 13.8564, -8, 15.4548, -4.1411)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=222122802]
+shape = SubResource("CircleShape2D_proj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2028569246]

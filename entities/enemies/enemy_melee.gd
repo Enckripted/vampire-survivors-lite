@@ -1,4 +1,4 @@
-class_name BasicEnemy
+class_name EnemyMelee
 extends Enemy
 
 @export var damage_amount := 5
