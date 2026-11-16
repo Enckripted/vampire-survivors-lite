@@ -1,12 +1,13 @@
 class_name EnemyWizard
 extends Enemy
 
-enum State { TARGETING, CHARGING }
+enum State { TARGETING, CHARGING, RESTING }
 
 @export var orb_damaage := 5
 @export var orb_knockback := 200
 @export var charge_time_secs := 1
 @export var charge_speed_divisor := 5
+@export var rest_time_secs := 1
 @export var orb_projectile: PackedScene
 
 @onready var firing_area = $FiringArea as Area2D
@@ -27,8 +28,11 @@ func fire_orb() -> void:
 	var dir = (player.position-position).normalized()
 	n_orb.setup(position, dir, orb_damaage)
 	get_tree().current_scene.add_child(n_orb)
+	state = State.RESTING
 
-	state = State.TARGETING
+	get_tree().create_timer(rest_time_secs).timeout.connect(func ():
+		state = State.TARGETING	
+	)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -39,7 +43,7 @@ func _on_body_exited(body: Node2D) -> void:
 		player_in_fire_range = false
 
 func get_movement_velocity() -> Vector2:
-	if player == null:
+	if player == null or state == State.RESTING:
 		return Vector2.ZERO
 
 	if state == State.CHARGING and Time.get_ticks_msec()-time_charge_start >= charge_time_secs*1000:

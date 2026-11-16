@@ -8,6 +8,7 @@ extends Entity
 
 @onready var auto_attack_timer = $AutoAttackTimer as Timer
 @onready var auto_attack_area = $AutoAttackArea as Area2D
+@onready var auto_attack_bar = $AutoAttackCooldown as ProgressBar
 
 var direction := Vector2.ZERO
 
@@ -50,6 +51,9 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		direction += Vector2.RIGHT
 	direction = direction.normalized()
+	
+	var time_elapsed = auto_attack_timer.wait_time - auto_attack_timer.time_left
+	auto_attack_bar.value = time_elapsed / auto_attack_timer.wait_time * 100
 
 func _on_auto_attack_timer_timeout() -> void:
 	auto_attack()

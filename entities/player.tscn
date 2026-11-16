@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://wqs7tx2l1onk" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dp14360pvmeyg" path="res://entities/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dn7yyf16mplbi" path="res://projectiles/sword_attack.tscn" id="2_e4p34"]
+[ext_resource type="PackedScene" uid="uid://05uykey8ryau" path="res://circle.tscn" id="4_rfe5m"]
 
 [sub_resource type="GDScript" id="GDScript_i3pqv"]
 script/source = "extends Sprite2D
@@ -12,10 +13,16 @@ script/source = "extends Sprite2D
 size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty0te"]
-radius = 125.0
+radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e4p34"]
 radius = 70.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qly61"]
+bg_color = Color(0.3137255, 0.3137255, 0.3137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsoyl"]
+bg_color = Color(0.43137255, 0.6, 1, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=1641185780]
 collision_mask = 2
@@ -38,12 +45,15 @@ shape = SubResource("RectangleShape2D_ty0te")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=619354663]
 
 [node name="AutoAttackTimer" type="Timer" parent="." unique_id=1307091210]
-wait_time = 0.75
+wait_time = 1.25
 autostart = true
 
 [node name="AutoAttackArea" type="Area2D" parent="." unique_id=1999320627]
 collision_layer = 0
 collision_mask = 2
+
+[node name="Circle" parent="AutoAttackArea" unique_id=2029962585 instance=ExtResource("4_rfe5m")]
+radius = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackArea" unique_id=705646008]
 shape = SubResource("CircleShape2D_ty0te")
@@ -54,5 +64,22 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=42229272]
 shape = SubResource("CircleShape2D_e4p34")
+
+[node name="AutoAttackCooldown" type="ProgressBar" parent="." unique_id=801472835]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_qly61")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qsoyl")
+value = 50.0
+show_percentage = false
 
 [connection signal="timeout" from="AutoAttackTimer" to="." method="_on_auto_attack_timer_timeout"]
