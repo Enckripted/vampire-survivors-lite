@@ -12,7 +12,10 @@ script/source = "extends Sprite2D
 size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty0te"]
-radius = 97.020615
+radius = 125.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e4p34"]
+radius = 70.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1641185780]
 collision_mask = 2
@@ -44,5 +47,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AutoAttackArea" unique_id=705646008]
 shape = SubResource("CircleShape2D_ty0te")
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1662781977]
+scale = Vector2(1.019, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=42229272]
+shape = SubResource("CircleShape2D_e4p34")
 
 [connection signal="timeout" from="AutoAttackTimer" to="." method="_on_auto_attack_timer_timeout"]

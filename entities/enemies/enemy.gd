@@ -5,7 +5,7 @@ const player_group_name := "player"
 
 @export var speed := 300
 @export var pickup_amount := 5
-@export var pickup_radius := 15
+@export var pickup_radius := 30
 
 @export var pickup_scene: PackedScene
 
