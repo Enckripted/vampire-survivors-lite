@@ -9,6 +9,10 @@ extends Entity
 @onready var auto_attack_timer = $AutoAttackTimer as Timer
 @onready var auto_attack_area = $AutoAttackArea as Area2D
 @onready var auto_attack_bar = $AutoAttackCooldown as ProgressBar
+var game_state: GameState
+
+var upgradesAt = [100, 200, 400] # surely they wont get this
+var nextUpgradeInd = 0
 
 var direction := Vector2.ZERO
 
@@ -40,6 +44,10 @@ func auto_attack():
 	n_attack.setup(position, attack_damage, attack_knockback)
 	get_tree().current_scene.add_child(n_attack)
 
+func _ready() -> void:
+	game_state = get_node("/root/GameScene/GameState") as GameState
+	super._ready()
+
 func _process(_delta: float) -> void:
 	direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
@@ -54,6 +62,10 @@ func _process(_delta: float) -> void:
 	
 	var time_elapsed = auto_attack_timer.wait_time - auto_attack_timer.time_left
 	auto_attack_bar.value = time_elapsed / auto_attack_timer.wait_time * 100
+
+	if nextUpgradeInd < upgradesAt.size() and game_state.score >= upgradesAt[nextUpgradeInd]:
+		attack_damage += 5
+		nextUpgradeInd += 1
 
 func _on_auto_attack_timer_timeout() -> void:
 	auto_attack()
